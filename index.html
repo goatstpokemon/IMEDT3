@@ -5,10 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
+    <a-scene
+      background="color: #FAFAFA"
+      id="js--scene"
+      renderer=" physicallyCorrectLights: false;"
+    >
+      <a-assests>
+        <a-asset-item
+          id="woman-obj"
+          src="./assets/models/woman/woman.obj"
+        ></a-asset-item>
+        <a-asset-item
+          id="woman-mtl"
+          src="./assets/models/woman/woman.mtl"
+        ></a-asset-item>
+        <a-asset-item
+          id="woman-tga"
+          src="./assets/models/woman/woman.tga"
+        ></a-asset-item>
+        <img
+          id="floorTexture"
+          src="./assets/textures/old-rustic-wood-free-texture.jpg"
+        />
+      </a-assests>
+
+      <a-camera id="js--camera">
+        <a-entity
+          id="js--cursor"
+          cursor="fuse: true; fuseTimeout: 1000"
+          position="0 0 -0.5"
+          class="js--cursor"
+          geometry="primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+          material="color: black; shader: flat"
+          raycaster="objects: .js--interact"
+        >
+        </a-entity>
+      </a-camera>
+
+      <a-plane
+        src="#floorTexture"
+        height="12"
+        width="6"
+        rotation="-90 0 0"
+        static-body
+        id="floor"
+      ></a-plane>
+      <a-entity
+        obj-model="obj: #woman-obj; mtl: #woman-mtl; tga:#woman.tga"
+        scale="0.12 0.12 0.12"
+        position="-2 0.0 -3"
+      ></a-entity>
+    </a-scene>
     <script src="./js/main.js"></script>
   </body>
 </html>

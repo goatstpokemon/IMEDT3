@@ -12,5 +12,5 @@ newmtl 01___Default
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka C:\Users\Luke\Downloads\34655_open3dmodel\(34655)\open3dmodel (1).com_model\Characters_A0829_301\20120311040042250764.tga
-	map_Kd C:\Users\Luke\Downloads\34655_open3dmodel\(34655)\open3dmodel (1).com_model\Characters_A0829_301\20120311040042250764.tga
+	map_Ka .\woman.png
+	map_Kd .\woman.png
