@@ -33,6 +33,7 @@ AFRAME.registerComponent('teleportcomponent', {
     };
     tel.appendChild(nameEl);
     nameEl.setAttribute('position', { x: 0, y: 2, z: 0 });
+    console.log('text pos', nameEl.getAttribute('position'));
     nameEl.setAttribute('color', this.data.color);
     tel.addEventListener('click', this.teleport);
   },
