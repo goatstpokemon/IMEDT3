@@ -33,12 +33,9 @@
           src="./assets/textures/old-rustic-wood-free-texture.jpg"
         />
 
-        <!-- ----------------  Geluiden  ----------------------->
-        <!-- <audio
-          src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"
-          autoplay
-          preload
-        ></audio> -->
+        <!-- -------------------- Icons  ----------------------->
+        <img src="./assets/audio/play.png" alt="play" id="play" />
+        <img src="./assets/audio/pause.png" alt="pause" id="pause" />
       </a-assests>
 
       <a-camera id="js--camera">
@@ -53,7 +50,10 @@
         >
         </a-entity>
       </a-camera>
-      <a-soundFragment src="./assets/audio/slurp.mp3"></a-soundFragment>
+      <a-soundFragment
+        position="0 2  0"
+        audio="./assets/audio/slurp.mp3"
+      ></a-soundFragment>
       <a-plane
         src="#floorTexture"
         height="12"

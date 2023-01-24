@@ -1,15 +1,14 @@
 AFRAME.registerComponent('soundcomponent', {
   schema: {
     name: { type: 'string' },
-    src: { type: 'string' },
+    audio: { type: 'string' },
     radius: { type: 'string', default: '0.3s' },
   },
   init: function () {
-    console.log(this.data.src);
     let clicked = false;
     let el = this.el;
     let pos = el.getAttribute('position');
-    let audio = new Audio(this.data.src);
+    let audio = new Audio(this.data.audio);
     el.setAttribute('rotation', { x: 0, y: -00, z: -90 });
     el.setAttribute('geometry', 'radius', this.data.radius);
     el.setAttribute('material', 'color', 'rgb(49, 65, 78)');
@@ -20,12 +19,21 @@ AFRAME.registerComponent('soundcomponent', {
     this.PlayFragment = () => {
       clicked = true;
       if (!clicked) {
-        el.setAttribute('material', 'color', 'rgb(49, 65, 78)');
+        el.setAttribute('material', {
+          color: 'rgb(49, 65, 78)',
+          src: '../assets/audio/play.svg',
+        });
       } else {
-        el.setAttribute('material', 'color', 'rgb(213, 106, 39)');
+        el.setAttribute('material', {
+          color: 'rgb(213, 106, 39)',
+          src: '../assets/audio/pause.svg',
+        });
         audio.play();
         audio.addEventListener('ended', () => {
-          el.setAttribute('material', 'color', 'rgb(49, 65, 78)');
+          el.setAttribute('material', {
+            color: 'rgb(49, 65, 78)',
+            src: '../assets/audio/play.svg',
+          });
         });
       }
     };
@@ -42,7 +50,7 @@ AFRAME.registerPrimitive('a-soundFragment', {
 
   mappings: {
     name: 'soundcomponent.name',
-    src: 'soundcomponent.src',
+    audio: 'soundcomponent.audio',
     radius: 'soundcomponent.radius',
   },
 });

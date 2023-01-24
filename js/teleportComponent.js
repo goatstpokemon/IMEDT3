@@ -11,8 +11,7 @@ AFRAME.registerComponent('teleportcomponent', {
 
     let nameEl = document.createElement('a-text');
     let tel = this.el;
-    pos = this.el.getAttribute('position');
-    console.log(this.data);
+    pos = tel.getAttribute('position');
     tel.setAttribute('rotation', { x: 0, y: -90, z: -00 });
     tel.setAttribute('material', 'color', this.data.color);
     tel.setAttribute('geometry', 'radius', this.data.radius);
@@ -33,15 +32,12 @@ AFRAME.registerComponent('teleportcomponent', {
     };
     tel.appendChild(nameEl);
     nameEl.setAttribute('position', { x: 0, y: 2, z: 0 });
-    console.log('text pos', nameEl.getAttribute('position'));
     nameEl.setAttribute('color', this.data.color);
     tel.addEventListener('click', this.teleport);
   },
 
   update: function () {
     // Do something when component's data is updated.
-    // this.teleport();
-    // console.info('updated');
   },
 });
 
