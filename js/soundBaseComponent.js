@@ -19,21 +19,42 @@ AFRAME.registerComponent('soundcomponent', {
     this.PlayFragment = () => {
       clicked = true;
       if (!clicked) {
-        el.setAttribute('material', {
-          color: 'rgb(49, 65, 78)',
-          src: '../assets/audio/play.svg',
-        });
+        var materials = [
+          new THREE.MeshBasicMaterial({
+            color: 'rgb(49, 65, 78)',
+          }),
+          new THREE.MeshBasicMaterial({
+            src: '../assets/audio/play.svg',
+          }),
+        ];
+
+        el.getObject3D('mesh').material = materials;
       } else {
-        el.setAttribute('material', {
-          color: 'rgb(213, 106, 39)',
-          src: '../assets/audio/pause.svg',
-        });
+        // el.setAttribute('material', {
+        //   color: 'rgb(213, 106, 39)',
+        //   src: '../assets/audio/pause.svg',
+        // });
+        var materials = [
+          new THREE.MeshBasicMaterial({
+            color: 'rgb(213, 106, 39)',
+          }),
+          new THREE.MeshBasicMaterial({
+            src: '../assets/audio/pause.png',
+          }),
+        ];
+        el.getObject3D('mesh').material = materials;
         audio.play();
         audio.addEventListener('ended', () => {
-          el.setAttribute('material', {
-            color: 'rgb(49, 65, 78)',
-            src: '../assets/audio/play.svg',
-          });
+          var materials = [
+            new THREE.MeshBasicMaterial({
+              color: 'rgb(49, 65, 78)',
+            }),
+            new THREE.MeshBasicMaterial({
+              src: '../assets/audio/play.png',
+            }),
+          ];
+
+          el.getObject3D('mesh').material = materials;
         });
       }
     };
