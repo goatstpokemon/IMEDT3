@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
-
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="./js/main.js"></script>
+    
     <title>Die Port van Cleve VR ervaring</title>
   </head>
   <body>
@@ -16,73 +20,43 @@
       id="js--scene"
       renderer=" physicallyCorrectLights: false;"
     >
-      <a-assests>
-        <!--------------------------- Woman -------------------->
-        <a-asset-item
-          id="woman-obj"
-          src="./assets/models/woman/woman.obj"
-        ></a-asset-item>
-        <a-asset-item
-          id="woman-mtl"
-          src="./assets/models/woman/woman.mtl"
-        ></a-asset-item>
-
-        <!----------------------  Floor  ---------------------->
-        <img
-          id="floorTexture"
-          src="./assets/textures/old-rustic-wood-free-texture.jpg"
-        />
-
-        <!-- -------------------- Icons  ----------------------->
-        <img src="./assets/audio/play.png" alt="play" id="play" />
-        <img src="./assets/audio/pause.png" alt="pause" id="pause" />
-      </a-assests>
+      <a-assests> </a-assests>
 
       <a-camera id="js--camera">
         <a-entity
-          id="js--cursor"
+         id="js--cursor"
           cursor="fuse: true; fuseTimeout: 1000"
           position="0 0 -0.5"
           class="js--cursor"
           geometry="primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
           material="color: rgb(213, 106, 39); shader: flat"
-          raycaster="objects: .js--interact"
+          raycaster="objects: .link"
         >
         </a-entity>
       </a-camera>
-      <a-soundFragment
-        position="0 2  0"
-        audio="./assets/audio/slurp.mp3"
-      ></a-soundFragment>
-      <a-plane
-        src="#floorTexture"
-        height="12"
-        width="6"
-        rotation="-90 0 0"
-        id="floor"
-      ></a-plane>
-      <a-teleport
-        class="js--interact"
-        static-body
-        name="left"
-        position="-2 0 -4"
-        rotation="0 -90 0"
-      ></a-teleport>
-      <a-teleport
-        class="js--interact"
-        static-body
-        name="right"
-        position="3 0 -4"
-        rotation="0 -90 0"
-      ></a-teleport>
-      <a-entity
-        obj-model="obj: #woman-obj; mtl: #woman-mtl;"
-        scale="0.12 0.12 0.12"
-        position="-2 0.0 -3"
-      ></a-entity>
-    </a-scene>
-    <script src="./js/main.js"></script>
-    <script src="./js/soundBaseComponent.js"></script>
-    <script src="./js/teleportComponent.js"></script>
+      <a-entity id="links" layout="type: line; margin: 1.5" position="0 1.5 -4">
+        <a-plane
+          class="link"
+          links
+          position="0 1 -2"
+          id="english"
+          width="1"
+          height="1"
+          material="shader: flat; color: rgb(49, 65, 78) "
+        >
+        <a-text value="English" width="4" align="center" ></a-text> 
+        </a-plane>
+        <a-entity
+          links
+          class="link"
+          id="dutch"
+          position="0 2 -4"
+          geometry="primitive: plane; height: 1; width: 1"
+          material="shader: flat; color: rgb(49, 65, 78) "         
+        >
+          <a-text value="Dutch" width="4" align="center" ></a-text>
+        </a-entity>
+    </a-scene> 
+    
   </body>
 </html>

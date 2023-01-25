@@ -1,8 +1,8 @@
-const camera = document.querySelector('#js--camera');
+
 
 AFRAME.registerComponent('teleportcomponent', {
   schema: {
-    color: { type: 'string', default: 'blue' },
+    color: { type: 'string', default: 'rgb(49, 65, 78)' },
     name: { type: 'string' },
     radius: { type: 'string', default: '0.5' },
   },
@@ -18,8 +18,11 @@ AFRAME.registerComponent('teleportcomponent', {
     tel.setAttribute('geometry', 'height', '0.1');
     tel.classList.add('js--interact');
     tel.object3D.position.set(pos.x, pos.y, pos.z);
-
+    tel.appendChild(nameEl);
+    nameEl.setAttribute('position', { x: 0, y: 4, z: 0 });
+    nameEl.setAttribute('color', 'rgb(213, 106, 39)');
     nameEl.setAttribute('value', this.data.name);
+    nameEl.setAttribute('align', 'right');
     this.teleport = (e) => {
       const location = tel.getAttribute('position');
       let att = document.createAttribute('animation');
@@ -30,9 +33,7 @@ AFRAME.registerComponent('teleportcomponent', {
           ${location.z}`;
       camera.setAttribute('animation', att.value);
     };
-    tel.appendChild(nameEl);
-    nameEl.setAttribute('position', { x: 0, y: 2, z: 0 });
-    nameEl.setAttribute('color', this.data.color);
+
     tel.addEventListener('click', this.teleport);
   },
 

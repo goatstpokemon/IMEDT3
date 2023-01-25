@@ -19,42 +19,21 @@ AFRAME.registerComponent('soundcomponent', {
     this.PlayFragment = () => {
       clicked = true;
       if (!clicked) {
-        var materials = [
-          new THREE.MeshBasicMaterial({
-            color: 'rgb(49, 65, 78)',
-          }),
-          new THREE.MeshBasicMaterial({
-            src: '../assets/audio/play.svg',
-          }),
-        ];
+        el.setAttribute('material', {
+          color: 'rgb(49, 65, 78)',
+        });
 
         el.getObject3D('mesh').material = materials;
       } else {
-        // el.setAttribute('material', {
-        //   color: 'rgb(213, 106, 39)',
-        //   src: '../assets/audio/pause.svg',
-        // });
-        var materials = [
-          new THREE.MeshBasicMaterial({
-            color: 'rgb(213, 106, 39)',
-          }),
-          new THREE.MeshBasicMaterial({
-            src: '../assets/audio/pause.png',
-          }),
-        ];
-        el.getObject3D('mesh').material = materials;
+        el.setAttribute('material', {
+          color: 'rgb(213, 106, 39)',
+        });
+
         audio.play();
         audio.addEventListener('ended', () => {
-          var materials = [
-            new THREE.MeshBasicMaterial({
-              color: 'rgb(49, 65, 78)',
-            }),
-            new THREE.MeshBasicMaterial({
-              src: '../assets/audio/play.png',
-            }),
-          ];
-
-          el.getObject3D('mesh').material = materials;
+          el.setAttribute('material', {
+            color: 'rgb(49, 65, 78)',
+          });
         });
       }
     };
