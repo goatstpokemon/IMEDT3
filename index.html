@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="aframe.min.js"></script>
     <title>Document</title>
-  </head>
-  <body>
-    <script src="./js/main.js"></script>
-  </body>
+</head>
+<body>
+    <a-scene>
+        <a-camera>
+            <a-entity
+            id="js--cursor"
+            material="color: #ffffff; shader: flat"
+            geometry=" primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+            position="0 0 -0.5"
+            ></a-entity>
+        </a-camera>
+        <a-assets>
+            <a-asset-item id="gltf" src="parade.gltf"></a-asset-item>
+            <a-asset-item id="gltfr" src="roof.gltf"></a-asset-item>
+
+        </a-assets>
+        <a-entity gltf-model="#gltf"></a-entity>
+        <a-entity gltf-model="#gltfr"></a-entity>
+
+    </a-scene>
+</body>
 </html>
