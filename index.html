@@ -16,12 +16,11 @@
   </head>
   <body>
     <a-scene
-      background="color: #FAFAFA"
+      background="color: rgb(49, 65, 78)"
       id="js--scene"
       renderer=" physicallyCorrectLights: false;"
     >
-      <a-assests> </a-assests>
-
+      
       <a-camera id="js--camera">
         <a-entity
          id="js--cursor"
@@ -29,11 +28,12 @@
           position="0 0 -0.5"
           class="js--cursor"
           geometry="primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
-          material="color: rgb(213, 106, 39); shader: flat"
+          material="color: rgb(255, 255, 255); shader: flat"
           raycaster="objects: .link"
         >
         </a-entity>
       </a-camera>
+      <a-text value="Welcome to 'Die Port van Cleve' VR Experience" width="4" align="center" position="1 2.5 -4" ></a-text>
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 1.5 -4">
         <a-plane
           class="link"
@@ -42,7 +42,7 @@
           id="english"
           width="1"
           height="1"
-          material="shader: flat; color: rgb(49, 65, 78) "
+          material="shader: flat; color: rgb(213, 106, 39) "
         >
         <a-text value="English" width="4" align="center" ></a-text> 
         </a-plane>
@@ -52,7 +52,7 @@
           id="dutch"
           position="0 2 -4"
           geometry="primitive: plane; height: 1; width: 1"
-          material="shader: flat; color: rgb(49, 65, 78) "         
+          material="shader: flat; color: rgb(213, 106, 39) "         
         >
           <a-text value="Dutch" width="4" align="center" ></a-text>
         </a-entity>

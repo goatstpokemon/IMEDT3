@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Die Port van Cleve VR ervaring</title>
+  </head>
+  <body>
+    <a-scene
+      background="color: #FAFAFA"
+      id="js--scene"
+      renderer=" physicallyCorrectLights: false;"
+    >
+      <a-assests>
+        <!--------------------------- Woman -------------------->
+        <a-asset-item
+          id="woman-obj"
+          src="./assets/models/woman/woman.obj"
+        ></a-asset-item>
+        <a-asset-item
+          id="woman-mtl"
+          src="./assets/models/woman/woman.mtl"
+        ></a-asset-item>
+
+        <!----------------------  Floor  ---------------------->
+        <img
+          id="floorTexture"
+          src="./assets/textures/old-rustic-wood-free-texture.jpg"
+        />
+
+        <!-- -------------------- Icons  ----------------------->
+        <img src="./assets/audio/play.png" alt="play" id="play" />
+        <img src="./assets/audio/pause.png" alt="pause" id="pause" />
+
+        <!-- -------------------- frame  ----------------------->
+        <a-asset-item
+          id="frame"
+          src="./assets/models/frame/frame2.glb"
+        ></a-asset-item>
+      </a-assests>
+
+      <a-camera id="js--camera">
+        <a-entity
+          id="js--cursor"
+          cursor="fuse: true; fuseTimeout: 1000"
+          position="0 0 -0.5"
+          class="js--cursor"
+          geometry="primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+          material="color: rgb(213, 106, 39); shader: flat"
+          raycaster="objects: .js--interact"
+        >
+        </a-entity>
+      </a-camera>
+
+      <a-plane
+        src="#floorTexture"
+        height="12"
+        width="6"
+        rotation="-90 0 0"
+        id="floor"
+      ></a-plane>
+
+      <a-teleport
+        class="js--interact"
+        static-body
+        name="1868"
+        position="3 0 -4"
+        rotation="0 -90 0"
+      ></a-teleport>
+      <a-entity
+        gltf-model="#frame"
+        scale="0.1 0.1 0.1"
+        position="4 2 -4"
+        rotation="90 -90 0"
+      ></a-entity>
+      <a-soundFragment
+        position="4 2 -2"
+        audio="./assets/audio/heineken.mp3"
+      ></a-soundFragment>
+      <!-- <a-teleport
+        class="js--interact"
+        static-body
+        name="1868"
+        position="-2 0 -4"
+        rotation="0 -90 0"
+      ></a-teleport> -->
+      <a-entity
+        obj-model="obj: #woman-obj; mtl: #woman-mtl;"
+        scale="0.12 0.12 0.12"
+        position="-2 0.0 -3"
+      ></a-entity>
+    </a-scene>
+    <script src="./js/main.js"></script>
+    <script src="./js/soundBaseComponent.js"></script>
+    <script src="./js/teleportComponent.js"></script>
+  </body>
+</html>
