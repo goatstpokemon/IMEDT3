@@ -8,15 +8,30 @@
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
 
     <link rel="stylesheet" href="style.css" />
-    <title>Die Port van Cleve VR ervaring</title>
+    <title>Die Port van Cleve VR Experience</title>
   </head>
   <body>
     <a-scene
       background="color: #FAFAFA"
       id="js--scene"
-      renderer=" physicallyCorrectLights: false;"
+      renderer="antialias: true;
+                   colorManagement: true;
+                   sortObjects: true;
+                   physicallyCorrectLights: true;
+                   maxCanvasWidth: 1920;
+                   maxCanvasHeight: 1920;"
     >
       <a-assests>
+        <!--------------------------- Room -------------------->
+        <a-asset-item
+          id="gltf"
+          src="./assets/models/room/parade.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="gltfr"
+          src="./assets/models/room/roof.gltf"
+        ></a-asset-item>
+
         <!--------------------------- Woman -------------------->
         <a-asset-item
           id="woman-obj"
@@ -37,7 +52,7 @@
         <img src="./assets/audio/play.png" alt="play" id="play" />
         <img src="./assets/audio/pause.png" alt="pause" id="pause" />
 
-        <!-- -------------------- frame  ----------------------->
+        <!-- -------------------- Painting  ----------------------->
         <a-asset-item
           id="frame"
           src="./assets/models/frame/frame2.glb"
@@ -57,42 +72,19 @@
         </a-entity>
       </a-camera>
 
-      <a-plane
-        src="#floorTexture"
-        height="12"
-        width="6"
-        rotation="-90 0 0"
-        id="floor"
-      ></a-plane>
-
-      <a-teleport
-        class="js--interact"
-        static-body
-        name="1868"
-        position="3 0 -4"
-        rotation="0 -90 0"
-      ></a-teleport>
+      <a-entity gltf-model="#gltf"></a-entity>
+      <a-entity gltf-model="#gltfr"></a-entity>
       <a-entity
-        gltf-model="#frame"
-        scale="0.1 0.1 0.1"
-        position="4 2 -4"
-        rotation="90 -90 0"
+        light="type: point; intensity: 1; distance: 12; decay: 1.5"
+        position="0 2 1.4198"
       ></a-entity>
-      <a-soundFragment
-        position="4 2 -2"
-        audio="./assets/audio/heineken.mp3"
-      ></a-soundFragment>
-      <!-- <a-teleport
-        class="js--interact"
-        static-body
-        name="1868"
-        position="-2 0 -4"
-        rotation="0 -90 0"
-      ></a-teleport> -->
       <a-entity
-        obj-model="obj: #woman-obj; mtl: #woman-mtl;"
-        scale="0.12 0.12 0.12"
-        position="-2 0.0 -3"
+        light="type: point; intensity: 1; distance: 12; decay: 1.5"
+        position="0 2 -1.40418"
+      ></a-entity>
+      <a-entity
+        light="type: point; intensity: 0.5; distance: 5; decay: 1"
+        position="0 1.5 -6.75"
       ></a-entity>
     </a-scene>
     <script src="./js/main.js"></script>

@@ -14,9 +14,28 @@
     <a-scene
       background="color: #FAFAFA"
       id="js--scene"
-      renderer=" physicallyCorrectLights: false;"
+      renderer="antialias: true;
+                   colorManagement: true;
+                   sortObjects: true;
+                   physicallyCorrectLights: true;
+                   maxCanvasWidth: 1920;
+                   maxCanvasHeight: 1920;"
     >
       <a-assests>
+        <!--------------------------- Room -------------------->
+        <a-asset-item
+          id="gltf"
+          src="./assets/models/room/parade.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="gltfr"
+          src="./assets/models/room/roof.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="gltftegel"
+          src="./assets/models/room/tegel.gltf"
+        ></a-asset-item>
+
         <!--------------------------- Woman -------------------->
         <a-asset-item
           id="woman-obj"
@@ -26,6 +45,15 @@
           id="woman-mtl"
           src="./assets/models/woman/woman.mtl"
         ></a-asset-item>
+        <!--------------------------- Light -------------------->
+        <a-asset-item
+          id="lightbulb-obj"
+          src="./assets/models/lightbulb/LightBulb.obj"
+        ></a-asset-item>
+        <a-asset-item
+          id="lightbulb-mtl"
+          src="./assets/models/lightbulb/LightBulb.mtl"
+        ></a-asset-item>
 
         <!----------------------  Floor  ---------------------->
         <img
@@ -33,11 +61,7 @@
           src="./assets/textures/old-rustic-wood-free-texture.jpg"
         />
 
-        <!-- -------------------- Icons  ----------------------->
-        <img src="./assets/audio/play.png" alt="play" id="play" />
-        <img src="./assets/audio/pause.png" alt="pause" id="pause" />
-
-        <!-- -------------------- frame  ----------------------->
+        <!-- -------------------- Painting  ----------------------->
         <a-asset-item
           id="frame"
           src="./assets/models/frame/frame2.glb"
@@ -57,43 +81,108 @@
         </a-entity>
       </a-camera>
 
-      <a-plane
-        src="#floorTexture"
-        height="12"
-        width="6"
-        rotation="-90 0 0"
-        id="floor"
-      ></a-plane>
-
+      <!-- Room model -->
+      <a-entity gltf-model="#gltf"> </a-entity>
+      <a-entity gltf-model="#gltfr"></a-entity>
+      <a-entity gltf-model="#gltftegel"></a-entity>
+      <!-- Lights  -->
+      <a-entity
+        light="type: point; intensity: 1; distance: 12; decay: 1.5"
+        position="0 2 1.4198"
+      ></a-entity>
+      <a-entity
+        light="type: point; intensity: 1; distance: 12; decay: 1.5"
+        position="0 2 -1.40418"
+      ></a-entity>
+      <a-entity
+        light="type: point; intensity: 0.5; distance: 5; decay: 1"
+        position="0 1.5 -6.75"
+      ></a-entity>
+      <a-entity
+        light="type: point; intensity: 0.3; distance: 0; decay: 1"
+        position="2 0.9 2.8"
+      ></a-entity>
+      <!-- Heineken -->
+      <a-entity
+        gltf-model="#frame"
+        scale="0.05 0.05 0.05"
+        position="0 1.5 5.7"
+        rotation="90 0 0"
+      ></a-entity>
       <a-teleport
         class="js--interact"
         static-body
         name="1868"
-        position="3 0 -4"
+        rot="180 90 180"
+        position="0 0 4.75"
         rotation="0 -90 0"
       ></a-teleport>
-      <a-entity
-        gltf-model="#frame"
-        scale="0.1 0.1 0.1"
-        position="4 2 -4"
-        rotation="90 -90 0"
-      ></a-entity>
       <a-soundFragment
-        position="4 2 -2"
-        audio="./assets/audio/heineken.mp3"
+        class="js--interact"
+        rotation="90 0 0 "
+        position="-1 1.5 5.7"
+        audio="./assets/audio/rec/heineken.mp3"
       ></a-soundFragment>
-      <!-- <a-teleport
+
+      <!-- Light -->
+
+      <a-entity
+        obj-model="obj: #lightbulb-obj; mtl: #lightbulb-mtl;"
+        scale="0.1 0.1 0.1"
+        position="2 0.7 2.8"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-teleport
         class="js--interact"
         static-body
-        name="1868"
-        position="-2 0 -4"
+        name="1879"
+        rot="180 90 180"
+        position="0.5 0 2.6"
         rotation="0 -90 0"
-      ></a-teleport> -->
+      ></a-teleport>
+      <a-soundFragment
+        class="js--interact"
+        rotation="90 90 0 "
+        position="3 1 2.8"
+        audio="./assets/audio/rec/light.mp3"
+      ></a-soundFragment>
+      <!-- Woman -->
       <a-entity
         obj-model="obj: #woman-obj; mtl: #woman-mtl;"
-        scale="0.12 0.12 0.12"
-        position="-2 0.0 -3"
+        scale="0.10 0.10 0.10"
+        position="-2.5 0.0 -5"
+        rotation="0 90 0"
       ></a-entity>
+      <a-teleport
+        class="js--interact"
+        static-body
+        rot="180 0 180"
+        name="1895"
+        position="-1 0.0 -5"
+        rotation="0 -90 0"
+      ></a-teleport>
+      <a-soundFragment
+        class="js--interact"
+        rotation="90 0 0 "
+        position="-1.5 1 -6"
+        audio="./assets/audio/rec/dames.mp3"
+      ></a-soundFragment>
+
+      <!-- Tiles -->
+      <a-teleport
+        class="js--interact"
+        static-body
+        rot="180 0 180"
+        name="1895"
+        position="0 0.0 -2"
+        rotation="0 -90 0"
+      ></a-teleport>
+      <a-soundFragment
+        class="js--interact"
+        rotation="90 90 0 "
+        position="3 1 -2"
+        audio="./assets/audio/rec/tegel.mp3"
+      ></a-soundFragment>
     </a-scene>
     <script src="./js/main.js"></script>
     <script src="./js/soundBaseComponent.js"></script>
